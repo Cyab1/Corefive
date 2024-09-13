@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Core Five -
+Events{% endblock %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/estyles.css' %}"
+/>
+{% endblock %} {% block content %}
+<main class="container mt-4">
+  <h1 class="text-center mb-5">Upcoming Events</h1>
+
+  <div class="row g-4">
+    {% for event in events %}
+    <div class="col-md-6 col-lg-4">
+      <div class="event-card">
+        <div class="event-header">
+          <h2>{{ event.name }}</h2>
+          <span class="event-date">{{ event.date }}</span>
+        </div>
+        <div class="event-body">
+          <p>{{ event.description }}</p>
+          <a href="{% url 'purchase_ticket' %}" class="btn btn-primary"
+            >Buy Ticket</a
+          >
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <p class="text-center">No upcoming events at the moment.</p>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %} {% block title %}Purchase Error{% endblock %} {% block
+content %}
+<div class="container mt-5">
+  <h1 class="text-center">Purchase Error</h1>
+  <div class="alert alert-danger" role="alert">{{ error_message }}</div>
+  <div class="text-center mt-4">
+    <a href="{% url 'purchase_ticket' %}" class="btn btn-primary">Try Again</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Return to Home</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Core Five -
+Members{% endblock %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/mstyles.css' %}"
+/>
+{% endblock %} {% block content %}
+<main class="container mt-4">
+  <h1 class="text-center mb-5">Meet Core Five</h1>
+
+  <div class="row g-4">
+    {% for member in members %}
+    <div class="col-md-6 col-lg-4">
+      <div class="member-card">
+        {% if member.image %}
+        <img
+          src="{{ member.image.url }}"
+          alt="{{ member.name }}"
+          class="member-image"
+        />
+        {% else %}
+        <img
+          src="{% static 'images/default_member.jpg' %}"
+          alt="{{ member.name }}"
+          class="member-image"
+        />
+        {% endif %}
+        <div class="member-info">
+          <h2>{{ member.name }}</h2>
+          <p class="member-role">{{ member.role }}</p>
+          <p class="member-description">{{ member.bio }}</p>
+        </div>
+      </div>
+    </div>
+    {% empty %}
+    <div class="col-12">
+      <p class="text-center">No members to display at the moment.</p>
+    </div>
+    {% endfor %}
+  </div>
+</main>
+{% endblock %}

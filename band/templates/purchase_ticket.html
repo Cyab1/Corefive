@@ -1,0 +1,36 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Purchase Ticket -
+Core Five{% endblock %} {% block extra_css %}<link
+  rel="stylesheet"
+  href="{% static 'css/purchase_ticket.css' %}"
+/>
+{% endblock %} {% block content %}
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Purchase Ticket</h1>
+  <form method="post" action="{% url 'purchase_ticket' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="event" class="form-label">Select Event</label>
+      <select class="form-select" id="event" name="event" required>
+        {% for event in events %}
+        <option value="{{ event.id }}">
+          {{ event.name }} - {{ event.date }}
+        </option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="quantity" class="form-label">Number of Tickets</label>
+      <input
+        type="number"
+        class="form-control"
+        id="quantity"
+        name="quantity"
+        min="1"
+        value="1"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Purchase</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Purchase Successful - Core Five{% endblock %}
+
+{% block content %}<div class="container mt-5">
+  <h1 class="text-center mb-4">Purchase Successful</h1>
+  <div class="alert alert-success">
+    <p>Thank you, {{ request.user.username }}, for your purchase!</p>
+    <p>Event: {{ event.name }}</p>
+    <p>Quantity: {{ quantity }}</p>
+    <p>Total Cost: ZAR {{ total_cost|floatformat:2 }}</p>
+  </div>
+  <div class="text-center mt-4">
+    <a href="{% url 'events' %}" class="btn btn-primary">View More Events</a>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Return to Home</a>
+  </div>
+</div>
+{% endblock %}
